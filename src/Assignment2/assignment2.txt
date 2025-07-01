@@ -1,0 +1,85 @@
+2.1 Algorithm findMiddle(L)
+front = L.after(header)
+back = L.before(trailer)
+while (aft # bef)
+   front<-L.after(front)
+   back<-L.before(back)
+
+return front;
+
+running time: O(n)
+
+2.2 Algorithm enqueue(Q, x):
+   S1.push(x)
+
+Algorithm dequeue(Q):
+   if S2.isEmpty() then
+      while not S1.isEmpty() do
+           S2.push(S1.pop())
+
+   if S2.isEmpty() then
+           raise error "Queue is empty"
+
+   return S2.pop()
+
+enqueue O(1)
+dequeue O(1) (Armotized)
+
+C-2.3
+
+Initialize queue Q
+
+Algorithm push(x):
+    Q.enqueue(x)
+    for i from 1 to Q.size() - 1 do:
+        Q.enqueue(Q.dequeue())
+
+Algorithm pop():
+    if Q.isEmpty() then
+        raise error "Stack is empty"
+    return Q.dequeue()
+
+
+Algorithm removeDuplicates(S):
+    seen ← empty Set
+    i ← 0
+    while i < S.size() do:
+        if S.get(i) ∈ seen then
+            S.removeAt(i)
+        else
+            seen.add(S.get(i))
+            i ← i + 1
+
+
+A Sequence will be better than a linked list
+
+
+PowerSet(n):
+    if n == 0:
+        return { {} }
+
+    subsets ← PowerSet(n-1)
+    result ← empty sequence
+
+    for each subset in subsets:
+        result.add(subset)
+        newSubset ← copy of subset
+        newSubset.add(n)
+        result.add(newSubset)
+
+    return result
+
+
+isBalanced(arr):
+    stk <- new Stack
+    for each char in arr:
+    if char === '{' || char === '(' || char === '[' then:
+         stk.push(char)
+    else if char === ')'|| char === '}' || char === ']' then
+        if !isMatch(char, stk.pop()) || stk.isEmpty()) then
+            return false
+    else continue
+
+if stk.isEmpty() return true
+
+isMatch(left, right) return left==='{' && right ==='}'||left==='[' && right ===']'||left==='(' && right ===')'
